@@ -77,6 +77,10 @@ def _migrate_config_from_file(config_from_yaml: dict) -> None:
         logger.info("Migrating old config: store_data -> with_image_data")
         config_from_yaml["with_image_data"] = config_from_yaml.pop("store_data")
 
+    if "logger_level" in config_from_yaml:
+        logger.info("Migrating old config: removing logger_level")
+        del config_from_yaml["logger_level"]
+
     # A malformed section (e.g. `shortcuts: oops`) is left untouched here so the
     # merge in _update_dict reports it as a config error instead of crashing.
     shortcuts = config_from_yaml.get("shortcuts")

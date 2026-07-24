@@ -43,6 +43,13 @@ def test_migrate_store_data_to_with_image_data(tmp_path: Path, old_value: bool) 
     assert "store_data" not in config
 
 
+def test_migrate_removes_logger_level(tmp_path: Path) -> None:
+    config_file = tmp_path / "config.yaml"
+    config_file.write_text("logger_level: info\n")
+    config = _config.load_config(config_file=config_file, config_overrides={})
+    assert "logger_level" not in config
+
+
 @pytest.mark.parametrize(
     "input_name, expected_name",
     [

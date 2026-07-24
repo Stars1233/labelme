@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Removed
+
+- Removed the `logger_level` config key, which had no effect: log verbosity has always been controlled solely by the `--logger-level` CLI flag. A `logger_level` entry remaining in an existing `~/.labelmerc` is dropped on load, so old config files keep working unchanged ([#2402](https://github.com/wkentaro/labelme/pull/2402))
+
 ### Fixed
 
 - Fixed clicking or hovering near a linestrip's unrendered "closing" line (the straight path from its last point back to its first) being treated as a hit on the shape; edge hover, add-point-to-edge, and body selection now ignore that phantom segment, since a linestrip is an open polyline and never draws it ([#2307](https://github.com/wkentaro/labelme/pull/2307))
